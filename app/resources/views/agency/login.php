@@ -1,6 +1,6 @@
 <!-- header -->
 <?php
-require_once dirname(__DIR__) . "/views/components/header.php";
+require_once dirname(__DIR__) . "/components/header.php";
 ?>
 
 <link rel="stylesheet" href="./css/login.css">
@@ -30,7 +30,7 @@ require_once dirname(__DIR__) . "/views/components/header.php";
                 </div>
                 <p>
                     Don't have an account?
-                    <a href="<?= createLink("/register") ?>" style="color: inherit!important;" class="text-reset">Register here</a>
+                    <a href="<?= createLink("/agency/register") ?>" style="color: inherit!important;" class="text-reset">Register here</a>
                 </p>
             </div>
         </div>
@@ -39,5 +39,5 @@ require_once dirname(__DIR__) . "/views/components/header.php";
 
 <!-- footer -->
 <?php
-require_once dirname(__DIR__) . "/views/components/footer.php";
+require_once dirname(__DIR__) . "/components/footer.php";
 ?>

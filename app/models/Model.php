@@ -5,7 +5,7 @@ class Model
     
     protected PDO $connection;
     protected $tableName;
-    // protected $joinTable;
+    protected $joinTable;
 
     public function __construct()
     {
@@ -26,19 +26,33 @@ class Model
         return $statement->execute();
     }
 
-    // public function sum($columns = ["*"], $sumColumn, $filtre, $groupByColumn= null, $data = [])
-    // {
-    //     $cols = implode(", ", [...$columns, "SUM($sumColumn)"]);
-    //     $group = "";
-    //     if($groupByColumn){
-    //       $group = "GROUP BY $groupByColumn";  
-    //     }
-    //     $query = "SELECT $cols as somme FROM $this->tableName $filtre $group";
-    //     $statement = $this->connection->prepare($query);
-    //     $statement->execute($data);
+    public function sum($columns = ["*"], $sumColumn, $jointure, $filtre, $groupByColumn= null)
+    {
+        $cols = implode(", ", [...$columns, "SUM($sumColumn)"]);
+        $group = "";
+        if($groupByColumn){
+          $group = "GROUP BY $groupByColumn";  
+        }
+        $query = "SELECT $cols as sum_seat FROM $this->tableName $jointure $this->joinTable $filtre $group";
+        $statement = $this->connection->prepare($query);
+        $statement->execute();
 
-    //     return $statement->fetchAll();
-    // }
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function sumPost($columns = ["*"], $sumColumn, $jointure, $filtre, $groupByColumn= null, $data = [])
+    {
+        $cols = implode(", ", [...$columns, "SUM($sumColumn)"]);
+        $group = "";
+        if($groupByColumn){
+          $group = "GROUP BY $groupByColumn";  
+        }
+        $query = "SELECT $cols as sum_seat FROM $this->tableName $jointure $this->joinTable $filtre $group";
+        $statement = $this->connection->prepare($query);
+        $statement->execute($data);
+
+        return $statement->fetchAll();
+    }
 
     public function create($data)
     {
@@ -49,9 +63,6 @@ class Model
         }, $keys));
         $statment = $this->connection->prepare("INSERT INTO $this->tableName  ($columns) VALUES ($placeholders)");
         return $statment->execute($data);
-        // $data2 = $this->connection->prepare("SELECT MAX(id) FROM $this->tableName ");
-        // $id=$data2->execute();
-        // return $id;
     }
 
     public function getLastId()

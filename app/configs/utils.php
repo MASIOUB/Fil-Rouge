@@ -20,7 +20,7 @@ function createLink($path)
 
 function redirect($path)
 {
-    header("location: /trainMvc/$path");
+    header("location: /tst/$path");
 }
 
 function isPostRequest()
@@ -38,14 +38,14 @@ function verify($required, $data): bool
     return true;
 }
 
-function createUserSession($user)
+function createSession($user)
 {
     if (!isset($_SESSION)) {
         session_start();
     }
     $_SESSION["id"] = $user["id"];
     $_SESSION["role"] = $user["role"];
-    $_SESSION["username"] = $user["username"];
+    $_SESSION["name"] = $user["name"];
 }
 
 function isLoggedIn()
@@ -68,7 +68,7 @@ function isClient()
 
 }
 
-function currentUserId()
+function currentId()
 {
     isLoggedIn();
     return $_SESSION["id"] ?? null; // nullish coalescing

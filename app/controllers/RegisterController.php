@@ -17,7 +17,7 @@ class RegisterController
             $id = $this->userModel->getLastId();
 
             if ($userId) {
-                createUserSession(["id" => $id['id'], ...$data]);
+                createSession(["id" => $id['id'], ...$data]);
                 return redirect("/");
             }
         } else {

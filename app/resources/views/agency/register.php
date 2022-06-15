@@ -1,6 +1,6 @@
 <!-- header -->
 <?php
-require_once dirname(__DIR__) . "/views/components/header.php";
+require_once dirname(__DIR__) . "/components/header.php";
 ?>
 
 <link rel="stylesheet" href="./css/login.css">
@@ -15,8 +15,12 @@ require_once dirname(__DIR__) . "/views/components/header.php";
                 <div>
                     <form class="row gap-2" method="POST">
                         <div class="form-group col-12">
-                            <label class="form-label">Full Name </label>
-                            <input type="text" name="name" class="form-control" placeholder="Full Name ...">
+                            <label class="form-label">Name Of Agency</label>
+                            <input type="text" name="name" class="form-control" placeholder="Name ...">
+                        </div>
+                        <div class="form-group col-12">
+                            <label class="form-label">Address</label>
+                            <input type="text" name="address" class="form-control" placeholder="Address ...">
                         </div>
                         <div class="form-group col-12">
                             <label class="form-label">Phone</label>
@@ -40,8 +44,8 @@ require_once dirname(__DIR__) . "/views/components/header.php";
                     </form>
                 </div>
                 <p>
-                    Are you already member?
-                    <a href="<?= createLink("/login") ?>" style="color: inherit!important;" class="text-reset">Login here</a>
+                    Do you have an account?
+                    <a href="<?= createLink("agency/login") ?>" style="color: inherit!important;" class="text-reset">Login here</a>
                 </p>
             </div>
         </div>
@@ -50,5 +54,5 @@ require_once dirname(__DIR__) . "/views/components/header.php";
 
 <!-- footer -->
 <?php
-require_once dirname(__DIR__) . "/views/components/footer.php";
+require_once dirname(__DIR__) . "/components/footer.php";
 ?>

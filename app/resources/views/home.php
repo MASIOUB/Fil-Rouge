@@ -3,7 +3,7 @@ require_once dirname(__DIR__) . "/views/components/header.php";
 ?>
 
 <link rel="stylesheet" href="./css/test.css">
-<link rel="stylesheet" href="./css/home.css">
+<link rel="stylesheet" href="./css/trip.css">
 
 <!-- hero -->
 <section class="bg-cover hero-section d-flex justify-content-center align-items-center" style="background-image: url(./images/home-slide-1.jpg);">
@@ -91,12 +91,12 @@ require_once dirname(__DIR__) . "/views/components/header.php";
     <div class="container">
         <div class="row">
             <div class="col-12 text-center" style="margin-bottom: 40px;">
-                <h1>The newest travel offers</h1>
+                <h1>The latest packages</h1>
             </div>
         </div>
-        <div class="row justify-content-around">
+        <div class="row justify-content-around gap-3">
             <div class="col-lg-3 col-md-12 bg-white p-0 packages-box">
-                <div class="text-center">
+                <div>
                     <img src="./images/marrakech.jpg" class="w-100">
                     <div class="p-3">
                         <h5 class="mt-3">Marrakech, Maroc</h5>
@@ -106,7 +106,7 @@ require_once dirname(__DIR__) . "/views/components/header.php";
                 </div>
             </div>
             <div class="col-lg-3 col-md-12 bg-white p-0 packages-box">
-                <div class="text-center">
+                <div>
                     <img src="./images/marrakech.jpg" class="w-100">
                     <div class="p-3">
                         <h5 class="mt-3">Marrakech, Maroc</h5>
@@ -116,7 +116,7 @@ require_once dirname(__DIR__) . "/views/components/header.php";
                 </div>
             </div>
             <div class="col-lg-3 col-md-12 bg-white p-0 packages-box">
-                <div class="text-center">
+                <div>
                     <img src="./images/marrakech.jpg" class="w-100">
                     <div class="p-3">
                         <h5 class="mt-3">Marrakech, Maroc</h5>
