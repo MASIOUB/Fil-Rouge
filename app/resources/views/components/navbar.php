@@ -10,6 +10,7 @@
                         <a class="nav-link" href="<?= createLink("/") ?>">Home</a>
                     </li>
                     <li class="nav-item">
+<<<<<<< HEAD
                         <a class="nav-link" href="<?= createLink("user/agency") ?>">Agencies</a>
                     </li>
                     <li class="nav-item">
@@ -20,6 +21,18 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= createLink("choose") ?>">Login</a>
+=======
+                        <a class="nav-link" href="#">Agences</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Trips</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= createLink("/about") ?>">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= createLink("/login") ?>">Login</a>
+>>>>>>> efbfc8ab230e849638eebddd7483843bbe5f9f7b
                     </li>
                 </ul>
             </div>

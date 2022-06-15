@@ -2,6 +2,7 @@
     <div class="d-flex justify-content-around">
         <div class="d-flex flex-column">
             <h2>quick links</h2>
+<<<<<<< HEAD
             <a class="text-white" href="<?= createLink("/") ?>" style="font-weight: lighter;"> home</a>
             <a class="text-white" href="<?= createLink("user/agency") ?>" style="font-weight: lighter;"> Agencies</a>
             <a class="text-white" href="<?= createLink("user/trip") ?>" style="font-weight: lighter;"> Packages</a>
@@ -24,6 +25,30 @@
     </div>
     <hr>
     <p class="text-center m-0">© <?= date('Y') ?> Enjoy Vacation. All Rights Reserved.</p>
+=======
+            <a class="text-white" href="<?= createLink("/") ?>" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> home</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Agences</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Trips</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> About</a>
+        </div>
+        <div class="d-flex flex-column">
+            <h2>extra links</h2>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Ask questions</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> About us</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Privacy policy</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Terms of use</a>
+        </div>
+        <div class="d-flex flex-column">
+            <h2>folow us</h2>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Facebook</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Twitter</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Instagram</a>
+            <a class="text-white" href="#" style="font-weight: lighter;"> <i class="fas fa-angle-right text-dark"></i> Linkedin</a>
+        </div>
+    </div>
+    <hr>
+    <p class="text-center m-0">© 2022 Enjoy Vacation. All Rights Reserved.</p>
+>>>>>>> efbfc8ab230e849638eebddd7483843bbe5f9f7b
 </footer>
 
 <!-- Optional JavaScript; choose one of the two! -->
