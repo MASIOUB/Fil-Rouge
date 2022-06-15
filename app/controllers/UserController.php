@@ -25,20 +25,20 @@ class UserController
         $bookings = $this->bookingModel->sum(['trips.id', 'trips.start', 'trips.time', 'trips.seats'], 'bookings.seats', 'JOIN', 'WHERE trips.id = bookings.trip_id AND bookings.status = "active" AND trips.status = "active"', 'trips.time, trips.destination, trips.departure, trips.start, trips.end');
         foreach ($bookings as $booking) {
             $id = $booking['id'];
-            // if ($booking['start'] = date('Y-m-d')) {
-            //     if ($booking['time'] > date('H:i:s')) {
-            //         $tripStatus = $this->tripModel->update(["status" => EXPIRED], $id);
-            //         return $tripStatus;
-            //     }
-            // }
-            // if ($booking['start'] > date('Y-m-d')) {
-            //     $tripStatus = $this->tripModel->update(["status" => EXPIRED], $id);
-            //     return $tripStatus;
-            // }
-            // if ($booking['seats'] = $booking['sum_seat']) {
-            //     $tripStatus = $this->tripModel->update(["status" => EXPIRED], $id);
-            //     return $tripStatus;
-            // }
+            if ($booking['start'] == date('Y-m-d')) {
+                if ($booking['time'] < date('H:i:s')) {
+                    $tripStatus = $this->tripModel->update(["status" => EXPIRED], $id);
+                    return $tripStatus;
+                }
+            }
+            if ($booking['start'] < date('Y-m-d')) {
+                $tripStatus = $this->tripModel->update(["status" => EXPIRED], $id);
+                return $tripStatus;
+            }
+            if ($booking['seats'] == $booking['sum_seat']) {
+                $tripStatus = $this->tripModel->update(["status" => EXPIRED], $id);
+                return $tripStatus;
+            }
         }
     }
 
@@ -52,10 +52,7 @@ class UserController
         if (isPostRequest()) {
             $trips = $this->tripModel->fetchAll("WHERE destination = :destination, start = :start, status = 'ACTIVE'", $_POST);
         } else {
-            $bookings = $this->bookingModel->sum(['trips.id', 'trips.start', 'trips.time', 'trips.seats'], 'bookings.seats', 'JOIN', 'WHERE trips.id = bookings.trip_id AND bookings.status = "active" AND trips.status = "active"', 'trips.time, trips.destination, trips.departure, trips.start, trips.end');
-            foreach ($bookings as $booking) {
-                # code...
-            }
+         
             $trips = $this->tripModel->fetchAll("WHERE status = 'ACTIVE'");
             if (!$trips) return view('user/trip');
             return view('user/trip', ["trips" => $trips]);
