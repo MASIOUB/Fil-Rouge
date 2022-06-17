@@ -40,19 +40,26 @@ class Model
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function sumPost($columns = ["*"], $sumColumn, $jointure, $filtre, $groupByColumn= null, $data = [])
+    public function join($columns = ["*"], $joiture = "", $filtre = "",$data = [])
     {
-        $cols = implode(", ", [...$columns, "SUM($sumColumn)"]);
-        $group = "";
-        if($groupByColumn){
-          $group = "GROUP BY $groupByColumn";  
-        }
-        $query = "SELECT $cols as sum_seat FROM $this->tableName $jointure $this->joinTable $filtre $group";
-        $statement = $this->connection->prepare($query);
+        $statement = $this->connection->prepare("SELECT $columns FROM $this->tableName $joiture $filtre");
         $statement->execute($data);
-
-        return $statement->fetchAll();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    // public function sumPost($columns = ["*"], $sumColumn, $jointure, $filtre, $groupByColumn= null, $data = [])
+    // {
+    //     $cols = implode(", ", [...$columns, "SUM($sumColumn)"]);
+    //     $group = "";
+    //     if($groupByColumn){
+    //       $group = "GROUP BY $groupByColumn";  
+    //     }
+    //     $query = "SELECT $cols as sum_seat FROM $this->tableName $jointure $this->joinTable $filtre $group";
+    //     $statement = $this->connection->prepare($query);
+    //     $statement->execute($data);
+
+    //     return $statement->fetchAll();
+    // }
 
     public function create($data)
     {

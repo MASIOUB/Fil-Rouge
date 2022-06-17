@@ -28,7 +28,7 @@ require_once dirname(__DIR__) . "./components/header.php";
                         <h5 class="mt-3"><?= $trip['destination'] ?></h5>
                         <p><?= $trip['description'] ?></p>
                         <p><?= $trip['end'] ?></p>
-                        <a href="#" class="btn btn-main">Book now</a>
+                        <a href="<?= createLink('user/addBooking/' . $trip['id'] )?>" class="btn btn-main">Book now</a>
                     </div>
                 </div>
             </div>
@@ -37,6 +37,8 @@ require_once dirname(__DIR__) . "./components/header.php";
         <?php endif; ?>
     </div>
 </section>
+
+<a href="<?= createLink('user/history')?>">show history</a>
 
 <!-- footer -->
 <?php
