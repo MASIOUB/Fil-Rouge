@@ -2,7 +2,7 @@
 require_once dirname(__DIR__) . "/views/components/header.php";
 ?>
 
-<link rel="stylesheet" href="./css/test.css">
+<link rel="stylesheet" href="./css/home.css">
 <link rel="stylesheet" href="./css/trip.css">
 
 <!-- hero -->
@@ -19,51 +19,9 @@ require_once dirname(__DIR__) . "/views/components/header.php";
     </div>
 </section>
 
-<!-- services -->
-<!-- <section class="text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-12 section-intro text-center">
-                <h1>Our services</h1>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-md-4 mb-3">
-                <div class="p-3" style="border: 5px solid #f1f1f1;">
-                    <div>
-                        <i class="fas fa-headphones" style="color: #006cff; font-size: 50px;"></i>
-                    </div>
-                    <div>
-                        <h5 class="mt-4">Service Name</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="p-3" style="border: 5px solid #f1f1f1;">
-                    <div>
-                        <i class="fas fa-award" style="color: #006cff; font-size: 50px;"></i>
-                    </div>
-                    <div>
-                        <h5 class="mt-4">Service Name</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <div class="p-3" style="border: 5px solid #f1f1f1;">
-                    <div>
-                        <i class="fas fa-wallet" style="color: #006cff; font-size: 50px;"></i>
-                    </div>
-                    <div>
-                        <h5 class="mt-4">Service Name</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse vitae.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
+<h1><a href="<?= createLink("logout") ?>">logout</a></h1>
+<h1><a href="<?= createLink("user/showProfile/" . currentId()) ?>">profile</a></h1>
+
 
 <!-- about -->
 <section>
@@ -86,7 +44,8 @@ require_once dirname(__DIR__) . "/views/components/header.php";
     </div>
 </section>
 
-<!-- new travel -->
+
+<!-- The latest packages -->
 <section style="background: #f1f1f1;">
     <div class="container">
         <div class="row">
@@ -94,37 +53,23 @@ require_once dirname(__DIR__) . "/views/components/header.php";
                 <h1>The latest packages</h1>
             </div>
         </div>
-        <div class="row justify-content-around gap-3">
-            <div class="col-lg-3 col-md-12 bg-white p-0 packages-box">
-                <div>
-                    <img src="./images/marrakech.jpg" class="w-100">
-                    <div class="p-3">
-                        <h5 class="mt-3">Marrakech, Maroc</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <a href="#" class="btn btn-main">read more</a>
+        <div class="row">
+            <!-- Packages list -->
+            <?php foreach ($trips as $trip) : ?>
+                <div class="col-xl-4 col-md-6 mb-4">
+                    <div class="card border-0 shadow" style="border-radius: 25px;">
+                        <img src="./uploads/<?= $trip['image'] ?>" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px; height: 300px">
+                        <div class="card-body text-center">
+                            <div class="d-flex justify-content-between">
+                            <h5 class="mt-3"><?= $trip['destination'] ?></h5>
+                            <h5 class="mt-3"><?= $trip['price'] ?> DH</h5>
+                            </div>
+                            <!-- <h5 class="mt-3"></?= $trip['destination'] ?></h5> -->
+                            <p><?= $trip['data'] ?>...</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-12 bg-white p-0 packages-box">
-                <div>
-                    <img src="./images/marrakech.jpg" class="w-100">
-                    <div class="p-3">
-                        <h5 class="mt-3">Marrakech, Maroc</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <a href="#" class="btn btn-main">read more</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-12 bg-white p-0 packages-box">
-                <div>
-                    <img src="./images/marrakech.jpg" class="w-100">
-                    <div class="p-3">
-                        <h5 class="mt-3">Marrakech, Maroc</h5>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <a href="#" class="btn btn-main">read more</a>
-                    </div>
-                </div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </section>

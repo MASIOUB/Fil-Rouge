@@ -26,6 +26,17 @@ class Model
         return $statement->execute();
     }
 
+    // SELECT destination, LEFT(`description`, 10) FROM trips WHERE status = "active" ORDER BY id DESC LIMIT 0,5;
+
+    public function getLastLeft($columns = ["*"], $leftColumn,  $filtre = "", $limit)
+    {
+        $cols = implode(", ", [...$columns, "LEFT($leftColumn, 40)"]);
+        $statement = $this->connection->prepare("SELECT $cols AS data FROM $this->tableName $filtre ORDER BY id DESC $limit");
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    }
+
     public function sum($columns = ["*"], $sumColumn, $jointure, $filtre, $groupByColumn= null)
     {
         $cols = implode(", ", [...$columns, "SUM($sumColumn)"]);
@@ -72,11 +83,11 @@ class Model
         return $statment->execute($data);
     }
 
-    public function getLastId()
+    public function getLastRow($limit = "", $filtre = "")
     {
-        $statement = $this->connection->prepare("SELECT id FROM $this->tableName order by id desc LIMIT 0,1 ");
+        $statement = $this->connection->prepare("SELECT * FROM $this->tableName order by id desc $limit ");
         $statement->execute();
-        return $statement->fetch(PDO::FETCH_ASSOC);
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
 
     }
 

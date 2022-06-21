@@ -1,8 +1,8 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white">
-        <div class="container">
-            <a class="navbar-brand" href="<?= createLink("/") ?>">Enjoy.</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+<nav class="navbar fixed-top navbar-expand-lg" style="background: #081f3e;">
+        <div class="container text-white">
+            <a class="navbar-brand text-white" href="<?= createLink("/") ?>"><span style="color: #077bd4;">Enjoy</span>Travel</a>
+            <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"><i class="fas fa-bars"></i></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">

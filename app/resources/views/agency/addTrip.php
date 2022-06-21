@@ -17,10 +17,10 @@
                 <h1 class="text-center">Add Trip</h1>
                 <div>
                     <form class="row gap-2" method="POST" enctype="multipart/form-data">
-                        <!-- <div class="form-group col-12">
+                        <div class="form-group col-12">
                             <label class="form-label">Departure</label>
                             <input type="file" name="image" class="form-control" placeholder="Name ...">
-                        </div> -->
+                        </div>
                         <div class="form-group col-12">
                             <label class="form-label">Departure</label>
                             <input type="text" name="departure" class="form-control" placeholder="Name ...">

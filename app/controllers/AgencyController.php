@@ -48,7 +48,7 @@ class AgencyController
         if (isPostRequest()) {
             $data = [...$_POST, "password" => password_hash($_POST["password"], PASSWORD_ARGON2I)];
             $agencyId = $this->agencyModel->create($data);
-            $id = $this->agencyModel->getLastId();
+            $id = $this->agencyModel->getLastRow();
 
             if ($agencyId) {
                 createSession(["id" => $id['id'], ...$data]);
@@ -79,13 +79,17 @@ class AgencyController
         if (!isLoggedIn()) return redirect("agency/login");
 
         if (isPostRequest()) {
-            // $image = $_FILES['image'];
+
+            $image=$_FILES['image']['name'];
+            $dest='C:/xampp/new/htdocs/tst/public/uploads/' .basename($image);
+            move_uploaded_file($_FILES['image']['tmp_name'], $dest);
+
             $agencyId = currentId();
-            $data = [...$_POST, "agency_id" => $agencyId];
+            $data = [...$_POST, "agency_id" => $agencyId, 'image' => $image, 'status' => ACTIVE];
             $trip = $this->tripModel->create($data);
             if ($trip) {
-                print_r($trip);
-                die();
+                // print_r($trip);
+                // die();
                 redirect("agency/index");
             }
         } else {

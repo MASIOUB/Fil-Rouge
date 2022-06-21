@@ -18,8 +18,15 @@ class AdminController
 
     public function index()
     {
-
-        return view("admin/dashboard");
+        $users = $this->userModel->fetchAll();
+        $agencies = $this->agencyModel->fetchAll();
+        $trips = $this->tripModel->fetchAll();
+        $bookings = $this->bookingModel->fetchAll();
+        $countUsers = count($users);
+        $countAgencies = count($agencies);
+        $countTrips = count($trips);
+        $countBookings = count($bookings);
+        return view("admin/dashboard", ['users' => $countUsers, 'agencies' => $countAgencies, 'trips' => $countTrips, 'bookings' => $countBookings]);
     }
 
     public function user()
@@ -80,6 +87,16 @@ class AdminController
         if (!$agency) return redirect('admin/dashboard');
         $isAgencyExist = $this->agencyModel->update(["status" => "deleted"], $id);
         if ($isAgencyExist) return redirect('admin/dashboard');
+    }
+
+    public function booking()
+    {
+        if (!isLoggedIn()) return redirect("login");
+
+        else {
+            $bookings = $this->bookingModel->join("bookings.id, bookings.status, trips.departure, trips.destination, trips.start, trips.end,trips.time, bookings.seats, trips.price", "INNER JOIN trips ON trips.id = bookings.trip_id");
+            return view("admin/booking", ["bookings" => $bookings]);
+        }
     }
 
 }

@@ -11,17 +11,18 @@ require_once dirname(__DIR__) . "./components/admin/sidebar.php";
                 <thead>
                     <tr>
                         <th scope="col" width="50">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Action</th>
+                        <th scope="col">Destination</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Seats</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($agencies as $agency) {?>
+                    <?php foreach ($bookings as $booking) {?>
                     <tr>
-                        <th scope="row"><?= $agency['id'] ?></th>
-                        <td><?= $agency['name'] ?></td>
-                        <td><?= $agency['email'] ?></td>
+                        <th scope="row"><?= $booking['id'] ?></th>
+                        <td><?= $booking['destination'] ?></td>
+                        <td><?= $booking['start'] ?></td>
+                        <td><?= $booking['seats'] ?></td>
                     </tr>
                     <?php }?>
                 </tbody>

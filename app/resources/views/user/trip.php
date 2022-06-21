@@ -9,36 +9,45 @@ require_once dirname(__DIR__) . "./components/header.php";
 <!-- travels list -->
 <section>
     <div class="container">
-        <!-- search bar -->
+
         <div class="row">
-            <div class="text-end" style="margin-top: 90px;">
-                    <form action="" method="post">
-                        <input type="text" placeholder="type your destination">
-                        <button type="submit">search</button>
-                    </form>
+            <h1 class="d-flex justify-content-center align-items-end" style="height: 25vh">Search for your next packages</h1>
+        </div>
+        <!-- search bar -->
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-lg-6 mt-5 border p-3">
+                <form class="input-group" method="post">
+                    <input type="text" name="departure" class="form-control" value="<?= $_POST["departure"] ?? "" ?>" placeholder="Departure ..." />
+                    <input type="date" name="start" class="form-control" value="<?= $_POST["start"] ?? "" ?>" placeholder="Check in ..." />
+                    <button type="submit" class="btn" style="background-color: #081f3e;">
+                        <i class="fas fa-search text-white"></i>
+                    </button>
+                </form>
             </div>
         </div>
         <?php if (isset($trips)) : ?>
-        <div class="row justify-content-around gap-3 my-5">
-            <?php foreach ($trips as $trip) : ?>
-            <div class="col-lg-3 col-md-12 bg-white p-0 packages-box">
-                <div>
-                    <img src="../images/marrakech.jpg" class="w-100">
-                    <div class="p-3">
-                        <h5 class="mt-3"><?= $trip['destination'] ?></h5>
-                        <p><?= $trip['description'] ?></p>
-                        <p><?= $trip['end'] ?></p>
-                        <a href="<?= createLink('user/addBooking/' . $trip['id'] )?>" class="btn btn-main">Book now</a>
+            <div class="row my-5">
+                <?php foreach ($trips as $trip) : ?>
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-0 shadow" style="border-radius: 25px;">
+                            <img src="./../uploads/<?= $trip['image'] ?>" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px; height: 300px">
+                            <div class="card-body text-center">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="mt-3"><?= $trip['destination'] ?></h5>
+                                    <h5 class="mt-3"><?= $trip['price'] ?> DH</h5>
+                                </div>
+                                <!-- <h5 class="mt-3"></?= $trip['destination'] ?></h5> -->
+                                <!-- <p></?= $trip['data'] ?>...</p> -->
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
-        </div>
         <?php endif; ?>
     </div>
 </section>
 
-<a href="<?= createLink('user/history')?>">show history</a>
+<a href="<?= createLink('user/history') ?>">show history</a>
 
 <!-- footer -->
 <?php

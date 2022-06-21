@@ -6,33 +6,48 @@ require_once dirname(__DIR__) . "./components/header.php";
 <!-- agencies list -->
 <section>
     <div class="container">
-        <!-- search bar -->
         <div class="row">
-            <div class="text-end" style="margin-top: 90px;">
-                    <form action="" method="post">
-                        <input type="text" placeholder="type your destination">
-                        <button type="submit">search</button>
-                    </form>
+            <h1 class="d-flex justify-content-center align-items-end" style="height: 25vh">Find more about agencies</h1>
+        </div>
+        <!-- search bar -->
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-lg-6 mt-5 border p-3">
+                <form class="input-group" method="post">
+                    <input type="text" name="name" class="form-control" value="<?= $_POST["name"] ?? "" ?>" placeholder="Name ..." />
+                    <button type="submit" class="btn" style="background-color: #081f3e;">
+                        <i class="fas fa-search text-white"></i>
+                    </button>
+                </form>
             </div>
         </div>
         <?php if (isset($agencies)) : ?>
-        <div class="row justify-content-around gap-3 my-5">
-            <?php foreach ($agencies as $agency) : ?>
-            <div class="col-lg-3 col-md-12 bg-white p-0 packages-box">
-                <div>
-                    <img src="../images/marrakech.jpg" class="w-100">
-                    <div class="p-3">
-                        <h5 class="mt-3"><?= $agency['name'] ?></h5>
-                        <p><?= $agency['email'] ?></p>
-                        <p><?= $agency['phone'] ?></p>
-                        <!-- <a href="</?= createLink('user/addBooking/' . $agency['id'] )?>" class="btn btn-main">Book now</a> -->
+            <div class="row my-5">
+                <?php foreach ($agencies as $agency) : ?>
+                    <div class="col-xl-4 col-md-6 mb-4">
+                        <div class="card border-0 shadow" style="border-radius: 25px;">
+                            <img src="../images/marrakech.jpg" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px; height: 300px">
+                            <div class="card-body text-center">
+                                <div class="d-flex justify-content-between">
+                                    <h5 class="mt-3"><?= $agency['name'] ?></h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                <?php endforeach; ?>
             </div>
-            <?php endforeach; ?>
-        </div>
         <?php endif; ?>
     </div>
+
+    <!-- <div class="col-xl-4 col-md-6 mb-4">
+        <div class="card border-0 shadow" style="border-radius: 25px;">
+            <img src="../images/marrakech.jpg" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px; height: 300px">
+            <div class="card-body text-center">
+                <div class="d-flex justify-content-between">
+                    <h5 class="mt-3"></?= $agency['name'] ?></h5>
+                </div>
+            </div>
+        </div>
+    </div> -->
 </section>
 
 <!-- footer -->
