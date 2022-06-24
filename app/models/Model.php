@@ -30,7 +30,7 @@ class Model
 
     public function getLastLeft($columns = ["*"], $leftColumn,  $filtre = "", $limit)
     {
-        $cols = implode(", ", [...$columns, "LEFT($leftColumn, 40)"]);
+        $cols = implode(", ", [...$columns, "LEFT($leftColumn, 30)"]);
         $statement = $this->connection->prepare("SELECT $cols AS data FROM $this->tableName $filtre ORDER BY id DESC $limit");
         $statement->execute();
         return $statement->fetchAll(PDO::FETCH_ASSOC);

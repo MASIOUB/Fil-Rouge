@@ -5,7 +5,7 @@
 
     date_default_timezone_set('Africa/casablanca');
 
-    $params = ["home"];
+    $params = ["choose"];
 
     if (isset($_GET["url"])) {
         $url =  $_GET["url"];

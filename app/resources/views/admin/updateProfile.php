@@ -1,6 +1,6 @@
 <!-- header -->
 <?php
-require_once dirname(__DIR__) . "./components/header.php";
+require_once dirname(__DIR__) . "./components/admin/sidebar.php";
 ?>
 
 <!-- css style -->
@@ -9,20 +9,6 @@ require_once dirname(__DIR__) . "./components/header.php";
 <section style="margin-top: 100px;">
   <div class="container">
     <div class="row">
-      <div class="col-xl-4">
-        <!-- Profile picture card-->
-        <div class="card shadow mb-4 mb-xl-0">
-          <div class="card-header p-3">
-            <h4>Profile Picture</h4>
-          </div>
-          <div class="card-body d-flex flex-column align-items-center text-center">
-            <!-- Profile picture image-->
-            <img class="rounded-circle mb-2" style="height: 10rem; width: 10rem; border-radius: 50% !important;" src="http://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-            <!-- Profile picture upload button-->
-            <button class="btn btn-main" type="button">Upload new image</button>
-          </div>
-        </div>
-      </div>
       <div class="col-xl-8">
         <!-- Account details card-->
         <div class="card shadow mb-4">
@@ -66,6 +52,13 @@ require_once dirname(__DIR__) . "./components/header.php";
                   <input class="form-control" type="text" name="b_day" placeholder="Enter your birthday" value="<?= $user['b_day'] ?>">
                 </div>
               </div>
+              <div class="row gx-3 mb-3">
+                <!-- Form Group (birthday)-->
+                <div class="col-md-12">
+                  <label class="small mb-1">Image</label>
+                  <input class="form-control" type="file" name="image" placeholder="Enter your birthday" value="<?= $user['image'] ?>">
+                </div>
+              </div>
               <!-- Save changes button-->
               <button class="btn btn-main" type="submit">Save changes</button>
             </form>
@@ -78,5 +71,5 @@ require_once dirname(__DIR__) . "./components/header.php";
 
 <!-- footer -->
 <?php
-require_once dirname(__DIR__) . "./components/footer.php";
+require_once dirname(__DIR__) . "./components/admin/footer.php";
 ?>

@@ -103,7 +103,6 @@
                                 <!-- <a href="</?= createLink('admin/agency') ?>" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-building me-2"></i>Agencies</a> -->
                                 <a href="<?= createLink('agency/trip') ?>" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-route me-2"></i>Packages</a>
                                 <a href="<?= createLink('agency/booking') ?>" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-check me-2"></i>Bookings</a>
-                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-comment me-2"></i>Comments</a>
                         </div>
                 </div>
                 <!-- /#sidebar-wrapper -->

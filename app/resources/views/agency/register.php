@@ -6,7 +6,7 @@ require_once dirname(__DIR__) . "/components/header.php";
 <link rel="stylesheet" href="./css/login.css">
 
 <!-- login page -->
-<section class="login-form d-flex align-items-center" style="background-image: url(./images/solo-traveler.png);">
+<section class="login-form d-flex align-items-center mt-5" style="background-image: url(./../images/solo-traveler.png);">
     <!-- <div class="overlay"></div> -->
     <div class="container text-dark login">
         <div class="row p-4">

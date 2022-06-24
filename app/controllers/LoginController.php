@@ -19,9 +19,9 @@ class LoginController
 
             createSession($user);
             if(isAdmin()){
-                return redirect("/dashbord");
+                return redirect("admin");
             }
-            return redirect("/");
+            return redirect("home");
         } else {
             return view("login");
         }

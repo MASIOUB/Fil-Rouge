@@ -5,7 +5,7 @@ require_once dirname(__DIR__) . "/views/components/header.php";
 <link rel="stylesheet" href="./css/login.css">
 
 <!-- login page -->
-<section class="bg-section d-flex align-items-center mt-5" style="background-image: url(./images/solo-traveler.png);">
+<section class="bg-section d-flex align-items-center mt-5" style="background-image: url(./images/T5fpn1.jpg);">
     <!-- <div class="overlay"></div> -->
     <div class="container text-dark login">
         <div class="row plg-4 justify-content-center my-5">

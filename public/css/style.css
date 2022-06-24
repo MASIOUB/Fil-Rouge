@@ -35,3 +35,22 @@ a{
     font-weight: 600;
     color: #fff;
 }
+
+.btn-second{
+    background: #077bd4;
+    border-radius: 100px;
+    border: none;
+    font-weight: 600;
+    color: #fff;
+}
+
+@media (max-width: 768px)
+{
+    .footer
+    {
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+        text-align: center;
+    }
+}

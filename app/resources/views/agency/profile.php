@@ -1,12 +1,7 @@
 <!-- header -->
 <?php
-require_once dirname(__DIR__) . "./components/header.php";
+require_once dirname(__DIR__) . "/components/header.php";
 ?>
-
-<!-- css style -->
-<link rel="stylesheet" href="./../css/style.css">
-
-
 
 <!-- profile -->
 <section style="margin-top: 100px;">
@@ -34,23 +29,13 @@ require_once dirname(__DIR__) . "./components/header.php";
           </div>
           <div class="card-body">
             <form>
-              <!-- Form Row-->
-              <div class="row gx-3 mb-3">
-                <!-- Form Group (first name)-->
-                <div class="col-md-6">
-                  <label class="small mb-1">First name</label>
-                  <input class="form-control" type="text" value="<?= $user['f_name'] ?>" readonly>
-                </div>
-                <!-- Form Group (last name)-->
-                <div class="col-md-6">
-                  <label class="small mb-1">Last name</label>
-                  <input class="form-control" type="text" value="<?= $user['l_name'] ?>" readonly>
-                </div>
-              </div>
               <!-- Form Group (username)-->
               <div class="mb-3">
-                <label class="small mb-1">Username</label>
-                <input class="form-control" type="text" value="<?= $user['username'] ?>" readonly>
+                <!-- Form Group (Name)-->
+                <div class="mb-3">
+                  <label class="small mb-1">Name</label>
+                  <input class="form-control" type="email" value="<?= $user['name'] ?>" readonly>
+                </div>
                 <!-- Form Group (email address)-->
                 <div class="mb-3">
                   <label class="small mb-1">Email address</label>
@@ -63,14 +48,14 @@ require_once dirname(__DIR__) . "./components/header.php";
                     <label class="small mb-1">Phone number</label>
                     <input class="form-control" type="tel" value="<?= $user['phone'] ?>" readonly>
                   </div>
-                  <!-- Form Group (birthday)-->
+                  <!-- Form Group (Address)-->
                   <div class="col-md-6">
-                    <label class="small mb-1">Birthday</label>
-                    <input class="form-control" type="date" value="<?= $user['b_day'] ?>" readonly>
+                    <label class="small mb-1">Address</label>
+                    <input class="form-control" type="date" value="<?= $user['address'] ?>" readonly>
                   </div>
                 </div>
                 <!-- Update button-->
-                <a href="<?= createLink("user/updateProfile/" . currentId()) ?>" class="btn btn-main">Update</a>
+                <a href="<?= createLink("agency/updateProfile/" . currentId()) ?>" class="btn btn-main">Update</a>
             </form>
           </div>
         </div>
@@ -81,5 +66,5 @@ require_once dirname(__DIR__) . "./components/header.php";
 
 <!-- footer -->
 <?php
-require_once dirname(__DIR__) . "./components/footer.php";
+require_once dirname(__DIR__) . "./components/agency/footer.php";
 ?>

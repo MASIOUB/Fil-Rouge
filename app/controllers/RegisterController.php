@@ -18,7 +18,7 @@ class RegisterController
 
             if ($userId) {
                 createSession(["id" => $id['id'], ...$data]);
-                return redirect("/");
+                return redirect("home");
             }
         } else {
             return view("register");

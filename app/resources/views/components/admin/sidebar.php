@@ -61,6 +61,19 @@
                         font-weight: bold;
                 }
 
+                .btn {
+                        padding: 14px 22px;
+                        transition: all 0.3s ease;
+                }
+
+                .btn-main {
+                        background: #081f3e;
+                        border-radius: 100px;
+                        border: none;
+                        font-weight: 600;
+                        color: #fff;
+                }
+
                 @media (min-width: 768px) {
                         #sidebar-wrapper {
                                 margin-left: 0;
@@ -90,7 +103,6 @@
                                 <a href="<?= createLink('admin/agency') ?>" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-building me-2"></i>Agencies</a>
                                 <a href="<?= createLink('admin/trip') ?>" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-route me-2"></i>Packages</a>
                                 <a href="<?= createLink('admin/booking') ?>" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-check me-2"></i>Bookings</a>
-                                <a href="#" class="list-group-item list-group-item-action bg-transparent second-text fw-bold"><i class="fas fa-comment me-2"></i>Comments</a>
                         </div>
                 </div>
                 <!-- /#sidebar-wrapper -->

@@ -1,8 +1,8 @@
 <footer class="text-white p-4" style="background: #081f3e;">
-    <div class="d-flex justify-content-around">
+    <div class="d-flex justify-content-around footer">
         <div class="d-flex flex-column">
             <h2>quick links</h2>
-            <a class="text-white" href="<?= createLink("/") ?>" style="font-weight: lighter;"> home</a>
+            <a class="text-white" href="<?= createLink("/home") ?>" style="font-weight: lighter;"> home</a>
             <a class="text-white" href="<?= createLink("user/agency") ?>" style="font-weight: lighter;"> Agencies</a>
             <a class="text-white" href="<?= createLink("user/trip") ?>" style="font-weight: lighter;"> Packages</a>
             <a class="text-white" href="<?= createLink("about") ?>" style="font-weight: lighter;"> About</a>

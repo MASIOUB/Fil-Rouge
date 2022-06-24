@@ -45,8 +45,19 @@ function createSession($user)
     }
     $_SESSION["id"] = $user["id"];
     $_SESSION["role"] = $user["role"];
-    $_SESSION["name"] = $user["name"];
+    $_SESSION["username"] = $user["username"];
 }
+
+function createAgencySession($agency)
+{
+    if (!isset($_SESSION)) {
+        @session_start();
+    }
+    $_SESSION["id"] = $agency["id"];
+    $_SESSION["name"] = $agency["name"];
+}
+
+
 
 function isLoggedIn()
 {
@@ -60,7 +71,6 @@ function isAdmin()
 {
     return currentUserRole() === ADMIN;
 }
-
 
 function isClient()
 {
@@ -77,4 +87,9 @@ function currentId()
 function currentUserRole(){
     if(!isLoggedIn()) return null;
     return $_SESSION["role"];
+}
+
+function currentUsername(){
+    if(!isLoggedIn()) return null;
+    return $_SESSION["username"];
 }

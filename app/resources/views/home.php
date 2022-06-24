@@ -6,7 +6,7 @@ require_once dirname(__DIR__) . "/views/components/header.php";
 <link rel="stylesheet" href="./css/trip.css">
 
 <!-- hero -->
-<section class="bg-cover hero-section d-flex justify-content-center align-items-center" style="background-image: url(./images/home-slide-1.jpg);">
+<section class="bg-cover hero-section d-flex justify-content-center align-items-center" style="background-image: url(./images/home-header.jpg);">
     <!-- <div class="overlay"></div> -->
     <div class="container text-center">
         <div class="row">
