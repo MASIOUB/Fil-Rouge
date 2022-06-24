@@ -28,7 +28,7 @@ require_once dirname(__DIR__) . "./components/header.php";
                             <img src="../images/marrakech.jpg" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px; height: 300px">
                             <div class="card-body text-center">
                                 <div class="d-flex justify-content-between">
-                                    <h5 class="mt-3"><?= $agency['name'] ?></h5>
+                                    <h5 class="mt-3"><a href="<?= createLink('user/showAgency/' . $agency['id']) ?>" class="text-black"><?= $agency['name'] ?></a></h5>
                                 </div>
                             </div>
                         </div>

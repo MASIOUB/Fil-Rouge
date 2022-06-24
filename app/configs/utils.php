@@ -15,12 +15,12 @@ function view($path, $data = [])
 function createLink($path)
 {
     $path = trim($path, "/");
-    return "/tst/$path";
+    return "/enjoy-travel/$path";
 }
 
 function redirect($path)
 {
-    header("location: /tst/$path");
+    header("location: /enjoy-travel/$path");
 }
 
 function isPostRequest()
@@ -41,7 +41,7 @@ function verify($required, $data): bool
 function createSession($user)
 {
     if (!isset($_SESSION)) {
-        session_start();
+        @session_start();
     }
     $_SESSION["id"] = $user["id"];
     $_SESSION["role"] = $user["role"];
@@ -51,7 +51,7 @@ function createSession($user)
 function isLoggedIn()
 {
     if (!isset($_SESSION)) {
-        session_start();
+        @session_start();
     }
     return isset($_SESSION["id"]) && !empty($_SESSION["id"]);
 }

@@ -35,12 +35,16 @@ class AgencyController
 
     public function index()
     {
-        if (!isLoggedIn()) return redirect("agency/login");
+        // if (!isLoggedIn()) return redirect("agency/login");
 
-        else {
-            $trips = $this->tripModel->fetchAll();
-            return view("agency/dashboard", ["trips" => $trips]);
-        }
+        $id = currentId();
+        $trips = $this->tripModel->fetchAll('WHERE agency_id = :id', ['id' => $id]);
+        $users = $this->bookingModel->join("users.*", "JOIN users ON users.id = bookings.user_id JOIN trips ON trips.id = bookings.trip_id and trips.agency_id = :agency_id", "", ['agency_id' => $id]);
+        $bookings = $this->bookingModel->join("bookings.*", "JOIN trips ON trips.id = bookings.trip_id AND trips.agency_id = :agency_id", "", ['agency_id' => $id]);
+        $countUsers = count($users);
+        $countTrips = count($trips);
+        $countBookings = count($bookings);
+        return view("agency/dashboard", ["trips" => $countTrips, "users" => $countUsers, "bookings" => $countBookings]);
     }
 
     public function register()
@@ -74,23 +78,39 @@ class AgencyController
         }
     }
 
+    public function user()
+    {
+        // if (!isLoggedIn()) return redirect("login");
+
+        $id = currentId();
+        $users = $this->bookingModel->join("users.*", "JOIN users ON users.id = bookings.user_id JOIN trips ON trips.id = bookings.trip_id and trips.agency_id = :agency_id", "", ['agency_id' => $id]);
+        return view("agency/user", ["users" => $users]);
+    }
+
+    public function trip()
+    {
+        // if (!isLoggedIn()) return redirect("login");
+
+        $id = currentId();
+        $trips = $this->tripModel->fetchAll('WHERE agency_id = :agency_id', ['agency_id' => $id]);
+        return view("agency/trip", ["trips" => $trips]);
+    }
+
     public function addTrip()
     {
-        if (!isLoggedIn()) return redirect("agency/login");
+        // if (!isLoggedIn()) return redirect("agency/login");
 
         if (isPostRequest()) {
 
-            $image=$_FILES['image']['name'];
-            $dest='C:/xampp/new/htdocs/tst/public/uploads/' .basename($image);
+            $image = $_FILES['image']['name'];
+            $dest = 'C:/xampp/new/htdocs/tst/public/uploads/' . basename($image);
             move_uploaded_file($_FILES['image']['tmp_name'], $dest);
 
             $agencyId = currentId();
             $data = [...$_POST, "agency_id" => $agencyId, 'image' => $image, 'status' => ACTIVE];
             $trip = $this->tripModel->create($data);
             if ($trip) {
-                // print_r($trip);
-                // die();
-                redirect("agency/index");
+                return redirect("agency/trip");
             }
         } else {
             return view("agency/addTrip");
@@ -99,7 +119,7 @@ class AgencyController
 
     public function updateTrip($id)
     {
-        if (!isLoggedIn()) return redirect("agency/login");
+        // if (!isLoggedIn()) return redirect("agency/login");
 
         $trip = $this->tripModel->fetchById($id);
         if (!$trip) {
@@ -107,19 +127,26 @@ class AgencyController
         }
 
         if (isPostRequest()) {
-            $dataTrip = $this->tripModel->update($_POST, $id);
+
+            $image = $_FILES['image']['name'];
+            $dest = 'C:/xampp/new/htdocs/tst/public/uploads/' . basename($image);
+            move_uploaded_file($_FILES['image']['tmp_name'], $dest);
+
+            $data = [...$_POST, 'image' => $image];
+
+            $dataTrip = $this->tripModel->update($data, $id);
             if ($dataTrip) {
-                return redirect("agency");
+                return redirect("agency/updateTrip/$id");
             }
             return redirect("agency/updateTrip/$id");
         } else {
-            return view("agency/updateTrip");
+            return view("agency/updateTrip", ['trip' => $trip]);
         }
     }
 
     public function cancelTrip($id)
     {
-        if (!isLoggedIn()) return redirect("agency/login");
+        // if (!isLoggedIn()) return redirect("agency/login");
 
         $trip = $this->tripModel->fetchById($id);
         if (!$trip) {
@@ -128,12 +155,39 @@ class AgencyController
 
         $dataTrip = $this->tripModel->update(["status" => CANCELD], $id);
         if ($dataTrip) {
-            // return redirect("agency");
-            echo "hello hello";
-            die();
+            return redirect("agency/trip");
         } else {
-            echo "page not found!!!!";
+            return view('agency/trip');
+        }
+    }
+
+    public function booking()
+    {
+        // if (!isLoggedIn()) return redirect("login");
+
+        $id = currentId();
+        $bookings = $this->bookingModel->join("bookings.*, trips.*", "JOIN trips ON trips.id = bookings.trip_id AND trips.agency_id = :agency_id", "", ['agency_id' => $id]);
+        return view("agency/booking", ["bookings" => $bookings]);
+    }
+
+    public function cancelBooking($id)
+    {
+        // if (!isLoggedIn()) return redirect("login");
+
+        $booking = $this->bookingModel->fetchById($id);
+        if(!$booking){
+            echo 'hello';
             die();
+            return redirect('agency/booking');
+        }
+
+        $dataBooking = $this->bookingModel->update(['status' => CANCELD], $id);
+        if($dataBooking){
+            echo 'updated';
+            die();
+            return redirect('agency/booking');
+        }else{
+            return view('agency/booking');
         }
     }
 

@@ -15,8 +15,16 @@ require_once dirname(__DIR__) . "/views/components/header.php";
                 <div>
                     <form class="row gap-2" method="POST">
                         <div class="form-group col-12">
-                            <label class="form-label">Full Name </label>
-                            <input type="text" name="name" class="form-control" placeholder="Full Name ...">
+                            <label class="form-label">First Name </label>
+                            <input type="text" name="f_name" class="form-control" placeholder="First Name ...">
+                        </div>
+                        <div class="form-group col-12">
+                            <label class="form-label">Last Name </label>
+                            <input type="text" name="l_name" class="form-control" placeholder="Last Name ...">
+                        </div>
+                        <div class="form-group col-12">
+                            <label class="form-label">Username </label>
+                            <input type="text" name="username" class="form-control" placeholder="Username ...">
                         </div>
                         <div class="form-group col-12">
                             <label class="form-label">Phone</label>

@@ -31,17 +31,17 @@ class AdminController
 
     public function user()
     {
-        if (!isLoggedIn()) return redirect("login");
+        // if (!isLoggedIn()) return redirect("login");
 
-        else {
+        
             $users = $this->userModel->fetchAll();
             return view("admin/user", ["users" => $users]);
-        }
+        
     }
 
     public function deleteUser($id)
     {
-        if (!isLoggedIn()) return redirect("login");
+        // if (!isLoggedIn()) return redirect("login");
 
         $user = $this->userModel->fetchById($id);
         if (!$user) return redirect('admin/dashboard');
@@ -51,17 +51,17 @@ class AdminController
 
     public function trip()
     {
-        if (!isLoggedIn()) return redirect("login");
+        // if (!isLoggedIn()) return redirect("login");
 
-        else {
+        
             $trips = $this->tripModel->fetchAll();
             return view("admin/trip", ["trips" => $trips]);
-        }
+        
     }
 
     public function deleteTrip($id)
     {
-        if (!isLoggedIn()) return redirect("login");
+        // if (!isLoggedIn()) return redirect("login");
 
         $trip = $this->tripModel->fetchById($id);
         if (!$trip) return redirect('admin/dashboard');
@@ -71,17 +71,17 @@ class AdminController
 
     public function agency()
     {
-        if (!isLoggedIn()) return redirect("login");
+        // if (!isLoggedIn()) return redirect("login");
 
-        else {
+        
             $agencies = $this->agencyModel->fetchAll();
             return view("admin/agency", ["agencies" => $agencies]);
-        }
+        
     }
 
     public function deleteAgency($id)
     {
-        if (!isLoggedIn()) return redirect("login");
+        // if (!isLoggedIn()) return redirect("login");
 
         $agency = $this->agencyModel->fetchById($id);
         if (!$agency) return redirect('admin/dashboard');
@@ -91,12 +91,12 @@ class AdminController
 
     public function booking()
     {
-        if (!isLoggedIn()) return redirect("login");
+        // if (!isLoggedIn()) return redirect("login");
 
-        else {
+        
             $bookings = $this->bookingModel->join("bookings.id, bookings.status, trips.departure, trips.destination, trips.start, trips.end,trips.time, bookings.seats, trips.price", "INNER JOIN trips ON trips.id = bookings.trip_id");
             return view("admin/booking", ["bookings" => $bookings]);
-        }
+        
     }
 
 }

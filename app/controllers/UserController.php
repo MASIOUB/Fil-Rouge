@@ -7,12 +7,14 @@ class UserController
     private $agencyModel;
     private $bookingModel;
     private $userModel;
+    private $commentModel;
     public function __construct()
     {
         $this->tripModel = new Trip();
         $this->agencyModel = new Agency();
         $this->bookingModel = new Booking();
         $this->userModel = new User();
+        $this->commentModel = new Comment();
 
         // $bookings = $this->bookingModel->sum(['trips.id', 'trips.start', 'trips.time', 'trips.seats'], 'bookings.seats', 'JOIN', 'WHERE trips.id = bookings.trip_id AND bookings.status = "active" AND trips.status = "active"', 'trips.time, trips.destination, trips.departure, trips.start, trips.end');
         // print_r($bookings);
@@ -55,7 +57,7 @@ class UserController
             $trips = $this->tripModel->fetchAll("WHERE departure = :departure and start = :start and status = 'ACTIVE'", $_POST);
             if ($trips) {
                 return view('user/trip', ['trips' => $trips]);
-            }else{
+            } else {
                 // $msg = 'agency not found';
                 view('user/trip');
             }
@@ -75,7 +77,7 @@ class UserController
             // die();
             if ($agencies) {
                 return view('user/agency', ['agencies' => $agencies]);
-            }else{
+            } else {
                 // $msg = 'agency not found';
                 view('user/agency');
             }
@@ -118,7 +120,7 @@ class UserController
                 return redirect('user');
             }
             return redirect("user/addBooking/$id_trip");
-        }else{
+        } else {
             return view('user/addBooking', ['trip' => $trip]);
         }
     }
@@ -136,10 +138,10 @@ class UserController
         }
         $isBookingExist = $this->bookingModel->update(['status' => CANCELD], $id_booking);
         // if ($isBookingExist) return redirect("user/history");
-        if(!$isBookingExist){
+        if (!$isBookingExist) {
             echo "booking not deleted";
             die();
-        }else{
+        } else {
             echo "booking is deleted";
             die();
         }
@@ -147,11 +149,38 @@ class UserController
 
     public function showAgency($id_agency)
     {
+        $id_user = currentId();
+        $user = $this->agencyModel->fetchById($id_user);
+        // var_dump($user);
+        // die();
         $agency = $this->agencyModel->fetchById($id_agency);
         if (!$agency) {
-            return view('user/agency');
+            return view('user/showAgency');
+        } else {
+            // $id_user = currentId();
+            if (isPostRequest()) {
+                $data = [...$_POST, 'agency_id' => $id_agency, 'user_id' => $id_user];
+                $comment = $this->commentModel->create($data);
+                if ($comment) {
+                    return redirect("user/showAgency/$id_agency",);
+                }
+            }
+            $comments = $this->commentModel->join('users.username, users.image, comments.content, comments.created_at', 'INNER JOIN users ON users.id = :id_user', 'WHERE comments.agency_id = :id_agency', ['id_user' => $id_user, 'id_agency' => $id_agency]);
+            return view("user/showAgency", ["agency" => $agency, "comments" => $comments, "user" => $user]);
+        }
+    }
+
+    public function showTrip($id_trip)
+    {
+        $user_id = currentId();
+        // $trip = $this->tripModel->fetchById($id_trip);
+        $trip = $this->tripModel->oneJoin('agencies.name, agencies.id as id_agency, trips.*', 'INNER JOIN agencies ON agencies.id = trips.agency_id', 'WHERE trips.id = :trip_id', ['trip_id' => $id_trip]);
+        // print_r($trip['name']);
+        // die();
+        if (!$trip) {
+            return view('user/trip');
         }else{
-            return view("user/showAgency", ["agency" => $agency]);
+            return view('user/showTrip', ['trip' => $trip]);
         }
     }
 
@@ -161,7 +190,7 @@ class UserController
         $user = $this->userModel->fetchById($id_user);
         if (!$user) {
             return view('login');
-        }else{
+        } else {
             return view('user/profile', ['user' => $user]);
         }
     }
@@ -179,7 +208,7 @@ class UserController
                 return redirect("user/showProfile/$id_user");
             }
             return redirect("user/updateProfile/$id_user");
-        }else{
+        } else {
             return view('user/updateProfile', ['user' => $user]);
         }
     }

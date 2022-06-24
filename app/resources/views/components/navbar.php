@@ -18,9 +18,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= createLink("about") ?>">About</a>
                     </li>
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="<?= createLink("choose") ?>">Login</a>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>

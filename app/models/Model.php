@@ -53,9 +53,16 @@ class Model
 
     public function join($columns = ["*"], $joiture = "", $filtre = "",$data = [])
     {
-        $statement = $this->connection->prepare("SELECT $columns FROM $this->tableName $joiture $filtre");
+        $statement = $this->connection->prepare("SELECT DISTINCT $columns FROM $this->tableName $joiture $filtre");
         $statement->execute($data);
         return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function oneJoin($columns = ["*"], $joiture = "", $filtre = "",$data = [])
+    {
+        $statement = $this->connection->prepare("SELECT DISTINCT $columns FROM $this->tableName $joiture $filtre");
+        $statement->execute($data);
+        return $statement->fetch(PDO::FETCH_ASSOC);
     }
 
     // public function sumPost($columns = ["*"], $sumColumn, $jointure, $filtre, $groupByColumn= null, $data = [])

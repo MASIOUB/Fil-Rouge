@@ -19,8 +19,8 @@ require_once dirname(__DIR__) . "/views/components/header.php";
     </div>
 </section>
 
-<h1><a href="<?= createLink("logout") ?>">logout</a></h1>
-<h1><a href="<?= createLink("user/showProfile/" . currentId()) ?>">profile</a></h1>
+<!-- <h1><a href="</?= createLink("logout") ?>">logout</a></h1>
+<h1><a href="</?= createLink("user/showProfile/" . currentId()) ?>">profile</a></h1> -->
 
 
 <!-- about -->

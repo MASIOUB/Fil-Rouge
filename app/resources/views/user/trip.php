@@ -33,7 +33,7 @@ require_once dirname(__DIR__) . "./components/header.php";
                             <img src="./../uploads/<?= $trip['image'] ?>" class="card-img-top" alt="..." style="border-top-left-radius: 25px; border-top-right-radius: 25px; height: 300px">
                             <div class="card-body text-center">
                                 <div class="d-flex justify-content-between">
-                                    <h5 class="mt-3"><?= $trip['destination'] ?></h5>
+                                    <h5 class="mt-3"><a href="<?= createLink('user/showTrip/' . $trip['id']) ?>" class="text-black"><?= $trip['destination'] ?></a></h5>
                                     <h5 class="mt-3"><?= $trip['price'] ?> DH</h5>
                                 </div>
                                 <!-- <h5 class="mt-3"></?= $trip['destination'] ?></h5> -->
